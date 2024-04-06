@@ -1,4 +1,5 @@
-import { Container, Profile } from './style.js';
+import { Container, Profile, ExitIcon } from './style.js';
+import { IoIosExit } from "react-icons/io";
 
 export function Header(){
 
@@ -13,6 +14,11 @@ export function Header(){
                 </div>
  
             </Profile>
+
+            <ExitIcon>
+                <IoIosExit/>
+            </ExitIcon>
+            
         </Container>
     );
 }

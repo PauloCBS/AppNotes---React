@@ -28,6 +28,7 @@ export const Profile = styled.div`
     width: 56px;
     height: 56px;
     border-radius: 50%;
+    margin-left: 22px;
   }
 
   > div {
@@ -46,4 +47,20 @@ export const Profile = styled.div`
       color: ${({ theme }) => theme.COLORS.WHITE};
     }
   }
+`
+
+
+export const ExitIcon = styled.div`
+
+  border: none;
+  background: none;
+  align-self: center;
+  margin-right: 22px;
+
+  >svg{
+    color: ${({theme}) => theme.COLORS.WHITE};
+    font-size: 36px;
+
+  }
+
 `
