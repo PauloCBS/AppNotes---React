@@ -1,12 +1,16 @@
 import { Container } from './style.js';
 
-export function Button({ title }){
+export function Button({ title, loading, ...rest }){
 
     return(
-        <Container type = "button">
+        <Container 
+            type = "button"
+            disabled = {loading}
+            {...rest}
+        >
 
-            { title }
-            
+            { loading ? 'loading': title }
+
         </Container>
     );
 }
