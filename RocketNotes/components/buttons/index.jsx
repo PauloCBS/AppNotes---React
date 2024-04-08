@@ -1,6 +1,6 @@
 import { Container } from './style.js';
 
-export function Button({ title, loading, ...rest }){
+export function Button ({ title, loading, ...rest }){
 
     return(
         <Container 
