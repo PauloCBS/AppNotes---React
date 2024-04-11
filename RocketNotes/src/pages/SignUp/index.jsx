@@ -1,9 +1,11 @@
 import { Container, Form, Background } from './styles';
 import { Input } from "../../../components/Input";
-import { FiMail } from "react-icons/fi";
-import { FiLock } from "react-icons/fi";
 import { Button } from "../../../components/Buttons";
-import { BsFilePerson } from 'react-icons/bs';
+
+import { FiMail, FiLock, FiUser } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+
+
 
 
 
@@ -24,10 +26,10 @@ export function SignUp(){
             
                 <Input type="text"
                     placeholder ="Name"
-                    icon ={BsFilePerson}
+                    icon ={FiUser}
                 />
 
-<Input type="text"
+                <Input type="text"
                     placeholder ="E-mail"
                     icon ={FiMail}
                 />
@@ -39,6 +41,13 @@ export function SignUp(){
 
                 <Button title="SignUp">
                 </Button>
+
+
+                <Link to="/">
+                    Already have an account ?
+                </Link>
+
+
             </Form>
 
             

@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 
 export const Container = styled.header`
 
@@ -20,7 +22,7 @@ export const Container = styled.header`
 `
 
 //a new export needs to be created to handle only the img and the text.
-export const Profile = styled.div`
+export const Profile = styled(Link)`
   display: flex;
   align-items: center;
 

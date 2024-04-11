@@ -3,9 +3,9 @@ import { Header } from "../../../components/Header";
 import {ButtonText} from"../../../components/ButtonText";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import { Input } from "../../../components/Input";
-import { Section } from "../../../components/section";
-import { Tag } from "../../../components/Tag";
+import { Section } from "../../../components/Section";
 import { Note } from "../../../components/Note";
+import { Link } from "react-router-dom";
 
 
 
@@ -28,18 +28,19 @@ export function Home(){
             </Search>
 
             <Content>
-                <Section title="My notes">
-                <Note data={{title: `React`,
-                            tags: [
-                                {id:'1', name: 'React'},
-                                {id:'2', name: 'RocketSeat'}
-                                ] //tag vetor.
-                            }}/>
-                </Section>
-                
+                <Link to="/details/1">
+                    <Section title="My notes">
+                    <Note data={{title: `React`,
+                                tags: [
+                                    {id:'1', name: 'React'},
+                                    {id:'2', name: 'RocketSeat'}
+                                    ] //tag vetor.
+                                }}/>
+                    </Section>
+                </Link>
             </Content>
 
-            <NewNote>
+            <NewNote to="/new">
                 <FiPlus/>
                 New Note
             </NewNote>

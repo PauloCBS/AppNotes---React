@@ -3,6 +3,8 @@ import { Input } from "../../../components/Input";
 import { FiMail } from "react-icons/fi";
 import { FiLock } from "react-icons/fi";
 import { Button } from "../../../components/Buttons";
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -32,6 +34,8 @@ export function SignIn(){
                 <Button title="login">
                     Login
                 </Button>
+
+                <Link to="/register">Create an account</Link>
             </Form>
 
             <Background 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import backgroundImg from '../../assets/Group 15.png';
+import backgroundImg from '../../assets/Group15.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -43,7 +43,7 @@ export const Form = styled.form`
 export const Background = styled.div`
 
     flex: 1;
-    background: url(https://github.com/SauronNoMosuko/Previews/blob/main/Group%2015.png?raw=true) no-repeat center center;
+    background-image: url(${backgroundImg}) ;
     background-size: cover;
 
 `

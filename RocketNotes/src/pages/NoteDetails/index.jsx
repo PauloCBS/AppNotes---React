@@ -2,9 +2,11 @@ import { Fragment } from "react";
 import {Container, Content } from "./styles";
 import { Button } from '../../../components/Buttons';
 import { Header } from "../../../components/Header";
-import { Section } from "../../../components/section";
+import { Section } from "../../../components/Section";
 import { Tag } from "../../../components/Tag";
 import {ButtonText} from"../../../components/ButtonText";
+import { Link } from "react-router-dom";
+
 
 export function Details() {
   return (
@@ -34,7 +36,10 @@ export function Details() {
           <Tag title="NodeJS"></Tag>
         </Section>
 
+        <Link to="/">
           <Button title="Back"/>
+        </Link>
+          
 
         </Content>
       </main>
