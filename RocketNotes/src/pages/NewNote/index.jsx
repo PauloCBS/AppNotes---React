@@ -8,12 +8,20 @@ import { Container, Form } from './styles'
 import { Link } from 'react-router-dom'
 
 export function NewNote() {
+
+
+  function handleSubmit(event) {
+    event.preventDefault(); // This stops the form from submitting normally
+    // Here you can add what you want to do after the form is submitted
+    console.log("Form submitted");
+  }
+
   return (
     <Container>
       <Header />
 
       <main>
-        <Form>
+        <Form onSubmit={handleSubmit} >
           <header>
             <h1>Create Note</h1>
             <Link to="/">back</Link>
@@ -34,8 +42,9 @@ export function NewNote() {
             </div>
           </Section>
 
-          <Button title="Save" />
+          <Button  type="submit" title="Save" />
         </Form>
+
       </main>
     </Container>
   )
