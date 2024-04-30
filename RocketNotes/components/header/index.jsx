@@ -1,21 +1,40 @@
+import { useNavigate } from 'react-router-dom';
 import { Container, Profile, ExitIcon } from './style.js';
 import { IoIosExit } from "react-icons/io";
+import {useAuth} from "../../src/hooks/auth"
+import { api } from '../../src/services/api.js';
+import avatarPlaceholder from '../../src/assets/avatar_placeholder.svg';
+
+
+
 
 export function Header(){
+
+    const { SignOut, user} = useAuth();
+    const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+    const navigation = useNavigate();
+
+
+
+    function handleSignOut(){
+        navigation(-1)
+        SignOut();
+    }
 
     return(
         <Container>
              <Profile to="/profile">
-                <img src="https://github.com/PauloCBS.png" alt="Profile picture"/>
+                <img src={avatarURL} alt={user.name}/>
+                
 
                 <div> 
                     <span>Welcome</span>
-                    <strong>Paulo Silva</strong>
+                    <strong>{user.name}</strong>
                 </div>
  
             </Profile>
 
-            <ExitIcon>
+            <ExitIcon onClick={handleSignOut} >
                 <IoIosExit/>
             </ExitIcon>
             

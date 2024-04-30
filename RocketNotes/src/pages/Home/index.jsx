@@ -1,15 +1,75 @@
+import { useState, useEffect } from 'react';
+import { api } from "../../services/api";
 import {Container, Logo, Menu, Search, Content, NewNote} from "./styles";
+import { Link, useNavigate } from "react-router-dom";
 import { Header } from "../../../components/Header";
 import {ButtonText} from"../../../components/ButtonText";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import { Input } from "../../../components/Input";
 import { Section } from "../../../components/Section";
 import { Note } from "../../../components/Note";
-import { Link } from "react-router-dom";
+
+
+
+
 
 
 
 export function Home(){
+
+    const[tags, setTags] = useState([]);
+    const[tagsSelected, setTagsSelected] = useState([]);
+    const [search, setSearch] = useState("");
+    const [notes, setNotes] = useState([]);
+
+    
+    const navigate = useNavigate();
+
+    function handleTagSelected(tagName){
+        const  alreadySelected = tagsSelected.includes(tagName)
+
+        if(tagName === "all"){
+            return setTagsSelected([]);
+        }
+
+        if(alreadySelected){
+            const filteredTags = tagsSelected.filter(tag => tag !== tagName);
+            setTagsSelected(filteredTags);
+        }else{
+            setTagsSelected(prevState => [...prevState, tagName]);
+        }
+
+        
+    } 
+
+    function handleDetails(id){
+       
+        navigate(`/details/${id}`); 
+    } 
+
+    
+
+    useEffect(() => {
+        async function fetchTags(){
+            const response = await api.get("/tags");
+            setTags(response.data);
+        }
+
+        fetchTags(); 
+    }, []);
+
+    useEffect(()=>{
+        async function fetchNotes(){
+            const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`);
+            setNotes(response.data);
+        }
+
+        fetchNotes();
+
+    },[tagsSelected, search])
+
+  
+
     return(
         <Container>
             <Logo>
@@ -18,26 +78,46 @@ export function Home(){
             <Header/>
 
             <Menu>
-                <li><ButtonText title="All Notes" $isactive  /></li> 
-                <li><ButtonText title="Node"/></li>
-                <li><ButtonText title="React"/></li>
+                <li><ButtonText
+                    title="All Tags"
+                    $isactive = {tagsSelected.length === 0}
+                    onClick={() => handleTagSelected("all")}
+                /></li>
+                {
+                    tags && tags.map(tag => (
+                        <li key={String(tag.id)}>
+                            <ButtonText
+                            title={tag.name}
+                            $isactive = {tagsSelected.includes(tag.name)}
+                            onClick={() => handleTagSelected(tag.name)}
+                            />
+                        </li>
+                    ))
+                }
+                
             </Menu>
 
             <Search>
-                <Input placeholder="Search by title"/>
+                <Input 
+                    placeholder="Search by title"
+                    onChange={(e) => setSearch(e.target.value)}
+                />
             </Search>
 
             <Content>
-                <Link to="/details/1">
+            
                     <Section title="My notes">
-                    <Note data={{title: `React`,
-                                tags: [
-                                    {id:'1', name: 'React'},
-                                    {id:'2', name: 'RocketSeat'}
-                                    ] //tag vetor.
-                                }}/>
+                        {
+                            notes.map(note =>(
+                            <Note
+                            key={String(note.id)} 
+                            data={note}
+                            onClick={() => handleDetails(note.id)}/>
+                            ))         
+                        }
+                        
                     </Section>
-                </Link>
+                
             </Content>
 
             <NewNote to="/new">
@@ -50,5 +130,3 @@ export function Home(){
     )
 };
 
-
-/* <li><ButtonText title="Frontend"/></li>  ->  Em JSX, quando você escreve o nome de uma prop sem atribuir um valor, ela é implicitamente considerada verdadeira (true).*/

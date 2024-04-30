@@ -1,48 +1,110 @@
-import { Fragment } from "react";
-import {Container, Content } from "./styles";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+import {Container, Content, Links } from "./styles";
 import { Button } from '../../../components/Buttons';
 import { Header } from "../../../components/Header";
 import { Section } from "../../../components/Section";
 import { Tag } from "../../../components/Tag";
 import {ButtonText} from"../../../components/ButtonText";
-import { Link } from "react-router-dom";
+
+
+
 
 
 export function Details() {
+  const[data, setData] = useState(null);
+  const params = useParams();
+  const navigate = useNavigate()
+
+function handleBack(){
+  navigate(-1);
+   //-1 is used to go back to the main page without adding it to the browser history. 
+}
+
+async function handleRemove(){
+  const confirm = window.confirm("Are you sure you want to delete the note ?");
+
+  if(confirm){
+    await api.delete(`/notes/${params.id}`)
+    navigate(-1);
+  }
+}
+
+
+  useEffect(()=>{
+    async function fetchNote(){
+      const response = await api.get(`/notes/${params.id}`);
+      setData(response.data);
+      
+    }
+
+    fetchNote();
+  }, []);
+
+
+
   return (
 
     <Container>
 
       <Header/>
-      <main>
-        <Content>
-        <ButtonText title="Delete Note"/>
-
-        <h1>What's Node.js</h1>
-
-        <p>
-            Environment that offers resources to write and execute JavaScript. Known as JS runtime environment. Node allows for creating websites, automation, and even an API.
-
-            It can be used for the backend of applications, front end, microservices, machine learning, AI, and scripts and automation.
-        </p>
-        
-        <Section title= "Useful Links"    >
-          <li><a href=""></a>www.google.com</li>
-          <li><a href=""></a>www.google.com</li>
-        </Section>
-
-        <Section title="Bookmarks">
-          <Tag title="Express"></Tag>
-          <Tag title="NodeJS"></Tag>
-        </Section>
-
-        <Link to="/">
-          <Button title="Back"/>
-        </Link>
+        {
+          data && 
+          <main>
+          <Content>
+          <ButtonText title="Delete Note"
+            onClick={handleRemove}/>
+  
+          <h1>
+            {data.title}
+          </h1>
+  
+          <p>
+            {data.description}
+          </p>
           
-
-        </Content>
-      </main>
+          {
+            data.links &&
+            <Section title= "Useful Links"    >
+              <Links>
+                {
+                    data.links.map(link => (
+                      <li key={String(link.id)}>
+                        <a href={link.url} target="_blank">
+                            {link.url}
+                        </a>
+                      </li>
+                  ))
+                }
+              </Links>
+            </Section>
+          }
+  
+          {   
+            data.tags &&
+            <Section title="Bookmarks">
+              {
+                data.tags.map(tag =>(
+                  <Tag 
+                    key = {String(tag.id)}
+                    title={tag.name}>
+                  </Tag>
+                ))
+              }
+            </Section>
+          }
+  
+          <Button
+           title="Back"
+           onClick={handleBack}
+           />
+          
+            
+  
+          </Content>
+        </main>
+        }
     </Container>
   )
 }
