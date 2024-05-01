@@ -9,30 +9,23 @@ import { Button } from "../../../components/Buttons";
 
 
 
-
-
 export function SignIn(){
 
+    //user state
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
-
-
+    // import use Auth
     const {signIn} = useAuth();
     
     function handleSignIn(){
         signIn({ email, password});
-
-        console.log("handleSignIn")
     };
 
     function handleSubmit(event) {
-        event.preventDefault(); // This stops the form from submitting normally
-        // Here you can add what you want to do after the form is submitted
-        console.log("Form submitted");
-      };
+        event.preventDefault();
+    };
     
-
- 
+    
 
     return(
         <Container>

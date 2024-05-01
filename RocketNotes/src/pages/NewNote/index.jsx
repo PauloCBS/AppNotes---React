@@ -68,7 +68,7 @@ export function NewNote() {
   function handleSubmit(event) {
     event.preventDefault(); // This stops the form from submitting normally
     // Here you can add what you want to do after the form is submitted
-    console.log("Form submitted");
+
   };
 
 
