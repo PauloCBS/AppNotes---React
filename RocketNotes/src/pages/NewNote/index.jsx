@@ -1,8 +1,8 @@
 import { TextArea } from '../../../components/TextArea';
 import { NoteItem } from '../../../components/NoteItem';
-import { Section } from '../../../components/Section';
-import { Button } from '../../../components/Buttons';
-import { Header } from '../../../components/Header';
+import { Section } from '../../../components/section';
+import { Button } from '../../../components/buttons';
+import { Header } from '../../../components/header';
 import { Input } from '../../../components/Input';
 import { Container, Form } from './styles';
 import { Link, useNavigate } from 'react-router-dom';

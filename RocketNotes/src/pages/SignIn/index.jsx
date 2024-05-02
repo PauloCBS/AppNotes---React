@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/auth';
 import { Input } from "../../../components/Input";
 import { FiMail } from "react-icons/fi";
 import { FiLock } from "react-icons/fi";
-import { Button } from "../../../components/Buttons";
+import { Button } from "../../../components/buttons";
 
 
 

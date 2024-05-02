@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import {Container, Content, Links } from "./styles";
-import { Button } from '../../../components/Buttons';
-import { Header } from "../../../components/Header";
-import { Section } from "../../../components/Section";
+import { Button } from '../../../components/buttons';
+import { Header } from "../../../components/header";
+import { Section } from "../../../components/section";
 import { Tag } from "../../../components/Tag";
 import {ButtonText} from"../../../components/ButtonText";
 

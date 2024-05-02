@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { api } from "../../services/api";
 import {Container, Logo, Menu, Search, Content, NewNote} from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import { Header } from "../../../components/Header";
+import { Header } from "../../../components/header";
 import {ButtonText} from"../../../components/ButtonText";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import { Input } from "../../../components/Input";
-import { Section } from "../../../components/Section";
+import { Section } from "../../../components/section";
 import { Note } from "../../../components/Note";
 
 

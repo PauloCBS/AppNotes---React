@@ -3,7 +3,7 @@ import { api } from '../../services/api';
 import { useState } from 'react';
 import { useAuth } from '../../hooks/auth'; //
 import { Input } from '../../../components/Input'
-import { Button } from '../../../components/Buttons'
+import { Button } from '../../../components/buttons'
 import { Container, Form, Avatar } from "./styles";
 import { useNavigate } from 'react-router-dom';
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";

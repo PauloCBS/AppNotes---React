@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Form, Background } from './styles';
 import { Input } from "../../../components/Input";
-import { Button } from "../../../components/Buttons";
+import { Button } from "../../../components/buttons";
 import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import { api } from "../../services/api";
@@ -17,7 +17,7 @@ export function SignUp() {
 
 
     function handleSignUp(event) {
-        event.preventDefault();  // Prevent the form from submitting the traditional way
+
 
         if (!name & !email & !password) {
            return ( 
@@ -35,15 +35,21 @@ export function SignUp() {
                 if (error.res) {
                     alert(error.res.data.message);
                 } else {
-                    alert("Please try again");
+                    alert("user alredy exists");
                 }
             });
+
+            
+    };
+
+    function handleSubmit(event) {
+        event.preventDefault();
     };
 
     return (
         <Container>
             <Background alt="Background image with a cup of coffee, notepad, and a laptop" />
-            <Form onSubmit={handleSignUp}>
+            <Form onSubmit={handleSubmit}>
                 <h1>Rocket Notes</h1>
                 <p>App to manage and save your notes</p>
 
